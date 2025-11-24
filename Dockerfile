@@ -10,7 +10,7 @@
 # COPY ./fonts/* /opt/conda/lib/python3.10/site-packages/matplotlib/mpl-data/fonts/ttf/
 
 
-ARG PYTORCH="1.12.0"
+ARG PYTORCH="1.13.0"
 ARG CUDA="11.6"
 ARG CUDNN="8"
 
@@ -20,14 +20,14 @@ ENV TORCH_CUDA_ARCH_LIST="6.0 6.1 7.0 7.5 8.0+PTX"
 ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
 ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
 
-RUN apt-get update && apt-get install -y \
-    ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libxrender-dev \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libxrender-dev
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
 
 # Install MMCV-full (latest stable 1.x)
 RUN pip install mmcv-full==1.7.1 \
-    -f https://download.openmmlab.com/mmcv/dist/cu116/torch1.12.0/index.html
+    -f https://download.openmmlab.com/mmcv/dist/cu116/torch1.13.0/index.html
 
 # Install MMDetection (latest stable 2.x)
 RUN pip install mmdet==2.28.2
