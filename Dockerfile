@@ -10,8 +10,8 @@
 # COPY ./fonts/* /opt/conda/lib/python3.10/site-packages/matplotlib/mpl-data/fonts/ttf/
 
 
-ARG PYTORCH="1.10.0"
-ARG CUDA="11.3"
+ARG PYTORCH="1.12.0"
+ARG CUDA="11.6"
 ARG CUDNN="8"
 
 FROM pytorch/pytorch:${PYTORCH}-cuda${CUDA}-cudnn${CUDNN}-devel
@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
 
 # Install MMCV-full (latest stable 1.x)
 RUN pip install mmcv-full==1.7.1 \
-    -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10.0/index.html
+    -f https://download.openmmlab.com/mmcv/dist/cu116/torch1.12.0/index.html
 
 # Install MMDetection (latest stable 2.x)
 RUN pip install mmdet==2.28.2
@@ -42,4 +42,5 @@ RUN git checkout v0.3.3
 ENV FORCE_CUDA="1"
 RUN pip install -r requirements/build.txt
 RUN pip install --no-cache-dir -e .
+
 
