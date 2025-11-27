@@ -55,8 +55,9 @@ ENV FORCE_CUDA="1"
 RUN pip install -r requirements/build.txt
 RUN pip install --no-cache-dir -e .
 
-# other Python package
-RUN pip install --no-cache-dir \
+# other Python package (only download)
+RUN mkdir -p /wheels
+RUN pip download --dest /wheels --no-cache-dir \
     numpy==1.26.4 \
     pandas \
     scipy \
@@ -110,4 +111,4 @@ RUN pip install --no-cache-dir \
     nvidia-ml-py3 \
     imgaug \
     fiftyone \
-    ipympl
+    ipympl 
