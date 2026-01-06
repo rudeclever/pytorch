@@ -21,6 +21,7 @@ ENV TORCH_NVCC_FLAGS="-Xfatbin -compress-all"
 ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    tmux \
     build-essential \
     git \
     wget \
